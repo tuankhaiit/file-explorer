@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">File Explorer</string>
+    <string name="message_no_files">No files</string>
+
+    <plurals name="folder_child_item_count">
+        <item quantity="one">%d item</item>
+        <item quantity="other">%d items</item>
+    </plurals>
+</resources>

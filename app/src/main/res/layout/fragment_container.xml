@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnSortType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:drawablePadding="10dp"
+        android:gravity="center"
+        android:textSize="12sp"
+        app:drawableStartCompat="@drawable/ic_baseline_sort"
+        app:layout_constraintBottom_toBottomOf="@id/btnSortMode"
+        app:layout_constraintEnd_toStartOf="@id/btnSortMode"
+        app:layout_constraintTop_toTopOf="@id/btnSortMode"
+        tools:text="Name" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/btnSortMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_sort_ascending" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvFile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="16dp"
+        android:scrollbarSize="6dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnSortType"
+        tools:listitem="@layout/item_file_layout" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/txtNoFiles"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message_no_files"
+        android:textSize="15sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
