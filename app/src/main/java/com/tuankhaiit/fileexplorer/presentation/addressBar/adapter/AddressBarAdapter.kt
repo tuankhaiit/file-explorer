@@ -10,7 +10,7 @@ import com.tuankhaiit.fileexplorer.presentation.addressBar.AddressBarUI
 class AddressBarAdapter(private val listener: OnAddressBarClickListener) :
     ListAdapter<AddressBarUI, AddressBarViewHolder>(object : DiffUtil.ItemCallback<AddressBarUI>() {
         override fun areContentsTheSame(oldItem: AddressBarUI, newItem: AddressBarUI): Boolean {
-            return oldItem == newItem
+            return oldItem.path == newItem.path
         }
 
         override fun areItemsTheSame(oldItem: AddressBarUI, newItem: AddressBarUI): Boolean {

@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">File Explorer</string>
     <string name="message_no_files">No files</string>
+    <string name="message_request_permission_rationale">File Manager need permission access device\'s storage to work.</string>
+    <string name="message_request_all_files_access">File Manager need all files access permission to work.</string>
 
     <plurals name="folder_child_item_count">
         <item quantity="one">%d item</item>

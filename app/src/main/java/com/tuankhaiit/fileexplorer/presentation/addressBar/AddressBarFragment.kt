@@ -1,7 +1,6 @@
 package com.tuankhaiit.fileexplorer.presentation.addressBar
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import com.tuankhaiit.fileexplorer.presentation.base.BaseFragment
 import com.tuankhaiit.fileexplorer.presentation.main.FileExplorerNavigation
 import com.tuankhaiit.fileexplorer.presentation.main.MainFragment
 import com.tuankhaiit.fileexplorer.presentation.main.MainViewModel
+import com.tuankhaiit.fileexplorer.presentation.main.NavigationRequest
 import java.io.File
 
 class AddressBarFragment : BaseFragment(), OnAddressBarClickListener {
@@ -44,15 +44,14 @@ class AddressBarFragment : BaseFragment(), OnAddressBarClickListener {
 
     override fun initObservers() {
         super.initObservers()
-        mainViewModel.currentPath.observe(viewLifecycleOwner) {
-            updateAddressBar(it)
+        mainViewModel.currentNavigationState.observe(viewLifecycleOwner) {
+            updateAddressBar(it.path)
         }
     }
 
     private fun updateAddressBar(path: String) {
         val rootPath = MainFragment.ROOT_PATH_DEFAULT
         val separator = File.separator
-        Log.e(TAG, "navigateToPath: $path")
         val addressBars = path.replaceFirst(rootPath, "").split(separator)
 
         var tempPath = rootPath
@@ -64,16 +63,15 @@ class AddressBarFragment : BaseFragment(), OnAddressBarClickListener {
             AddressBarUI(tempPath, addressBarName)
         }
         adapter.submitList(result)
-        // scroll to end
-        binding.rvAddressBar.smoothScrollToPosition(result.size - 1)
     }
 
     override fun onAddressBarClick(addressBarUI: AddressBarUI) {
-        if (mainViewModel.currentPath.value == addressBarUI.path) return
+        val currentState = mainViewModel.currentNavigationState.value ?: return
+        if (currentState.path == addressBarUI.path) return
 
-        val sortType = mainViewModel.currentSortType.value ?: MainFragment.SORT_TYPE_DEFAULT
-        val sortMode = mainViewModel.currentSortMode.value ?: MainFragment.SORT_MODE_DEFAULT
-        getNavigation()?.navigateToPath(addressBarUI.path, sortType, sortMode)
+        val sortType = currentState.sortType
+        val sortMode = currentState.sortMode
+        getNavigation()?.navigateToPath(NavigationRequest(addressBarUI.path, sortType, sortMode))
     }
 
     private fun getNavigation(): FileExplorerNavigation? {

@@ -9,7 +9,7 @@ import com.tuankhaiit.fileexplorer.presentation.container.FileUI
 
 class FileAdapter(private val listener: OnFileClickListener) : ListAdapter<FileUI, FileViewHolder>(object : DiffUtil.ItemCallback<FileUI>() {
     override fun areItemsTheSame(oldItem: FileUI, newItem: FileUI): Boolean {
-        return false
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: FileUI, newItem: FileUI): Boolean {

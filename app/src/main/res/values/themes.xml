@@ -23,4 +23,8 @@
     <style name="Theme.FileExplorer.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.FileExplorer.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.FileExplorer.AlertDialog" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+        <item name="android:background">?android:attr/divider</item>
+    </style>
 </resources>

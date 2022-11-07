@@ -22,6 +22,7 @@ import com.tuankhaiit.fileexplorer.presentation.container.adapter.OnFileClickLis
 import com.tuankhaiit.fileexplorer.presentation.main.FileExplorerNavigation
 import com.tuankhaiit.fileexplorer.presentation.main.MainFragment
 import com.tuankhaiit.fileexplorer.presentation.main.MainViewModel
+import com.tuankhaiit.fileexplorer.presentation.main.NavigationRequest
 import kotlinx.coroutines.launch
 
 class ContainerFragment : BaseFragment(), OnFileClickListener {
@@ -62,8 +63,10 @@ class ContainerFragment : BaseFragment(), OnFileClickListener {
             adapter = this@ContainerFragment.adapter
         }
         binding.btnSortMode.setOnClickListener {
-            sortMode =
-                if (sortMode == SortMode.ASCENDING) SortMode.DESCENDING else SortMode.ASCENDING
+            sortMode = if (sortMode == SortMode.ASCENDING)
+                SortMode.DESCENDING
+            else
+                SortMode.ASCENDING
             onUpdateSortState()
             loadFiles()
         }
@@ -92,7 +95,7 @@ class ContainerFragment : BaseFragment(), OnFileClickListener {
             }
         }
         viewModel.navigateToPathEvent.observe(viewLifecycleOwner) { path ->
-            getNavigation()?.navigateToPath(path, sortType, sortMode)
+            getNavigation()?.navigateToPath(NavigationRequest(path, sortType, sortMode))
         }
     }
 
